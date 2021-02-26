@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices.ComTypes;
-using Entities.Abstract;
+using Core.Entities;
 
 namespace Entities.Concrete
 {

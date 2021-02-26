@@ -4,8 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
-namespace DataAccess.Concreate
+namespace DataAccess.Concrete
 {
     public class InMemoryCarDal : ICarDal
     {
@@ -63,6 +64,11 @@ namespace DataAccess.Concreate
         {
             Car carToDelete = _cars.SingleOrDefault(c => c.Id == car.Id);
             _cars.Remove(car);
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            throw new NotImplementedException();
         }
     }
 }
