@@ -31,17 +31,39 @@ namespace Business.Concrete
 
         }
 
+        public IResult Update(Car car)
+        {
+            if (car.DailyPrice > 0 && car.Description.Length > 1)
+            {
+                _carDal.Update(car);
+                return new SuccessResult(Messages.CarUpdated);
+            }
+            else
+            {
+                return new ErrorResult(Messages.CarCanNotUpdated);
+            }
+        }
+
         public IResult Delete(Car car)
         {
-
-            _carDal.Delete(car);
-            return new SuccessResult(Messages.CarDeleted);
-
-
+            try
+            {
+                _carDal.Delete(car);
+                return new SuccessResult(Messages.CarDeleted);
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(Messages.CarCanNotDelete);
+            }
+           
         }
 
         public IDataResult<List<Car>> GetAll()
         {
+            if (DateTime.Now.Hour == null)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.Maintenance);
+            }
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
 
@@ -55,28 +77,17 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarListedWDto);
         }
 
-        public IDataResult<List<Car>> GetCarsByBrandId(int id)
+        public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id), Messages.CarListedWBrandId);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId), Messages.CarListedWBrandId);
         }
 
-        public IDataResult<List<Car>> GetCarsByColorId(int id)
+        public IDataResult<List<Car>> GetCarsByColorId(int colorId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id), Messages.CarListedWColorId);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId), Messages.CarListedWColorId);
         }
 
-        public IResult Update(Car car)
-        {
-            if (car.DailyPrice > 0 && car.Description.Length > 1)
-            {
-                _carDal.Update(car);
-                return new SuccessResult(Messages.CarUpdated);
-            }
-            else
-            {
-                return new ErrorResult(Messages.CarCanNotUpdated);
-            }
-        }
+        
     }
 
 }

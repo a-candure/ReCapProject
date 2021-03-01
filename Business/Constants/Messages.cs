@@ -7,10 +7,11 @@ namespace Business.Constants
         public static string CarAdded = "Araba eklendi";
         public static string CarPriceInValid = "Araba fiyatı 0'dan büyük olmalıdır";
         public static string CarDeleted = "Araba silindi";
+        public static string CarCanNotDelete = "araba silinemedi";
         public static string CarUpdated = "Araba güncellendi";
         public static string CarCanNotUpdated = "Araba güncellenemedi";
         public static string CarsListed = "Araba listelendi";
-        
+
 
         public static string BrandAdded = "Marka eklendi";
         public static string BrandNameInValid = "Marka ismi geçersiz";
@@ -23,21 +24,24 @@ namespace Business.Constants
         public static string ColorAdded = "Renk eklendi";
         public static string ColorCanNotAdded = "Renk eklenemedi";
         public static string ColorDeleted = "Renk silindi";
+        public static string ColorCanNotDelete = "Renk silinemedi";
         public static string ColorUpdated = "Renk güncellendi";
         public static string ColorCanNotUpdated = "Renk Güncellenemedi";
         public static string ColorsListed = "Renkler listelendi";
-        public static string GetColorByColorId = "Renk numaralarıyla birlikte isimleri listelendi";
+        public static string GetColorByColorId = "Renk numara ve isimleriyle listelendi";
 
         public static string CustomerAdded = "Müşteri eklendi";
-        public static string CustomerNameInValid = "Müşteri ismi Geçersiz";//customermanager 34 
+        public static string CustomerNameInValid = "Müşteri ismi Geçersiz";
         public static string CustomerDeleted = "Müşteri silindi";
+        public static string CustomerCanNotDeleted = "müşteri silinemedi";
         public static string CustomerUpdated = "Müşteri güncellendi";
         public static string CustomerCanNotUpdated = "Müşteri güncellenemedi";
         public static string CustomersListed = "Müşteriler listelendi";
+        public static string GetCustomerByCustomerId = "müşteriler numara ve isimleriyle listelendi";
 
         public static string UserAdded = "Kullanıcı eklendi";
         public static string UserDeleted = "Kullanıcı silindi";
-        public static string UserCanNotDeleted="Kullanıcı silinirken hata oluştu";
+        public static string UserCanNotDeleted = "Kullanıcı silinirken hata oluştu";
         public static string UserUpdated = "Kullanıcı güncellendi";
         public static string UsersListed = "Kullanıcılar listelendi";
         public static string UserEmailFormatIsWrong = "Yanlış Email Formatı";
@@ -45,6 +49,7 @@ namespace Business.Constants
 
         public static string RentalAdded = "Araç kiralama eklendi";
         public static string RentalDeleted = "Araç kiralama silindi";
+        public static string RentalCanNotDelete = "Araç kiralama silinemedi";
         public static string RentalUpdated = "Araç kiralama güncellendi";
         public static string RentalsListed = "Araç kiralamaları listelendi";
         public static string RentalReturnDateNull = "Araç henüz teslim edilmedi";

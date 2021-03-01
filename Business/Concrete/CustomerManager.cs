@@ -57,8 +57,13 @@ namespace Business.Concrete
             }
             catch (Exception)
             {
-                throw new Exception("A system error occurs on deletion!");
+                return new ErrorResult(Messages.CustomerCanNotDeleted);
             }
+        }
+
+        public IDataResult<Customer> GetById(int id)
+        {
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerId == id), Messages.GetCustomerByCustomerId);
         }
     }
 }

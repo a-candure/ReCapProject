@@ -37,7 +37,7 @@ namespace Business.Concrete
             }
             catch (Exception)
             {
-                throw new Exception("A system error occurs on deletion!");
+                return new ErrorResult(Messages.ColorCanNotDelete);
             }
         }
 
@@ -57,10 +57,10 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ColorUpdated);
         }
 
-        public IDataResult<Color> GetById(int colorId)
+        public IDataResult<Color> GetById(int id)
         {
-            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == colorId), Messages.GetColorByColorId);
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == id),Messages.GetColorByColorId);
         }
-
+        
     }
 }

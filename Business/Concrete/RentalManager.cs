@@ -43,7 +43,7 @@ namespace Business.Concrete
                 _rentalDal.Delete(rental);
                 return new SuccessResult(Messages.RentalDeleted);
             }
-            return new ErrorResult(Messages.RentalReturnDateNull);
+            return new ErrorResult(Messages.RentalCanNotDelete);
         }
 
         public IDataResult<List<Rental>> GetAll()
@@ -51,9 +51,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalsListed);
         }
 
-        public IDataResult<Rental> GetById(int rentalId)
+        public IDataResult<Rental> GetById(int id)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.RentalId == rentalId), Messages.GetRentalByRentalId);
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.RentalId == id), Messages.GetRentalByRentalId);
         }
     }
 }

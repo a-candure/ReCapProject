@@ -47,7 +47,7 @@ namespace Business.Concrete
             }
             catch (Exception)
             {
-                throw new Exception(Messages.UserCanNotDeleted);
+                return new ErrorResult(Messages.UserCanNotDeleted);
             }
         }
 
@@ -56,9 +56,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UsersListed);
         }
 
-        public IDataResult<User> GetById(int userId)
+        public IDataResult<User> GetById(int id)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId), Messages.GetUserByUserId);
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == id), Messages.GetUserByUserId);
         }
     }
 }
