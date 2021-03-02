@@ -14,13 +14,30 @@ namespace ConsoleUI
         {
             //BrandAndCarAdded();
             //ColorAddedTest();
-            //ListOfAllTest();
-            CustomerDetailDTO();
-
-
+            //CarDetailsDTO();
+            //CustomerDetailsDTO();
+            //RentalDetailsDTO();
         }
 
-        private static void CustomerDetailDTO()
+        private static void RentalDetailsDTO()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetRentalDetailDto();
+            Console.WriteLine("---------KİRALAMA LİSTESİ---------\n ");
+            foreach (var rentalDTO in result.Data)
+            {
+                Console.WriteLine(" Rental Id:  " + rentalDTO.RentalId +
+                                  "\n Müşteri Adı : " + rentalDTO.CustomerName +
+                                  "\n Arabanın Adı : " + rentalDTO.Description +
+                                  "\n Arabanın Günlük Kira Fiyatı :  " + rentalDTO.DailyPrice +
+                                  "\n Arabanın Marka Adı :  " + rentalDTO.BrandName +
+                                  "\n Arabayı Kiralama Başlangıcı :  " + rentalDTO.RentalStart +
+                                  "\n Araba kiralama bitiş tarihi:  " + rentalDTO.RentalEnd +
+                                  "\n----------------------------------------");
+            }
+        }
+
+        private static void CustomerDetailsDTO()
         {
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
             var result = customerManager.GetCustomerDetailDto();
@@ -50,7 +67,7 @@ namespace ConsoleUI
             { Id = 8, ColorId = 1, BrandId = 9, DailyPrice = 250, ModelYear = 2011, Description = "Hilux" });
         }
 
-        private static void ListOfAllTest()
+        private static void CarDetailsDTO()
         {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetCarDetailDto();

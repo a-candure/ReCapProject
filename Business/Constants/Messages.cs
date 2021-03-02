@@ -58,6 +58,7 @@ namespace Business.Constants
         public static string CarListedWDto = "Arabalar detaylarıyla listelendi";
         public static string CarListedWBrandId = "Seçilen markanın arabaları listelendi";
         public static string CarListedWColorId = "Seçilen renk arabalar listelendi";
+        public static string RentalListedWCarAndCustomer = "araç kiralamalar listelendi";
 
         public static string Maintenance = "Sistem bakımda";
         public static string GetAll = "listelendi";
