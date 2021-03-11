@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Business.Abstract;
+using Business.Constants;
 using Core.Utilities;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -49,7 +50,7 @@ namespace Business.Concrete
 
             if (imageCount >= 5)
             {
-                return new ErrorResult("One car must have 5 or less images");
+                return new ErrorResult(Messages.ImageCanNotAddMoreFive);
             }
 
             var imageResult = Fileupload.FileUpload.Upload(image);
@@ -60,7 +61,7 @@ namespace Business.Concrete
             }
             carImage.ImagePath = imageResult.Message;
             _carImageDal.Add(carImage);
-            return new SuccessResult("Car image added");
+            return new SuccessResult(Messages.ImageAdded);
         }
 
         public IResult Delete(CarImage carImage)
@@ -68,12 +69,12 @@ namespace Business.Concrete
             var image = _carImageDal.Get(c => c.ImageId == carImage.ImageId);
             if (image == null)
             {
-                return new ErrorResult("Image not found");
+                return new ErrorResult(Messages.ImageCanNotFound);
             }
 
             Fileupload.FileUpload.Delete(image.ImagePath);
             _carImageDal.Delete(carImage);
-            return new SuccessResult("Image was deleted successfully");
+            return new SuccessResult(Messages.ImageDeleted);
         }
 
         public IResult Update(IFormFile image, CarImage carImage)
@@ -81,7 +82,7 @@ namespace Business.Concrete
             var isImage = _carImageDal.Get(c => c.ImageId == carImage.ImageId);
             if (isImage == null)
             {
-                return new ErrorResult("Image not found");
+                return new ErrorResult(Messages.ImageCanNotFound);
             }
 
             var updatedFile = Fileupload.FileUpload.Update(image, isImage.ImagePath);
@@ -91,7 +92,7 @@ namespace Business.Concrete
             }
             carImage.ImagePath = updatedFile.Message;
             _carImageDal.Update(carImage);
-            return new SuccessResult("Car image updated");
+            return new SuccessResult(Messages.ImageUpdated);
 
         }
     }

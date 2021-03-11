@@ -60,8 +60,14 @@ namespace Business.Constants
         public static string CarListedWColorId = "Seçilen renk arabalar listelendi";
         public static string RentalListedWCarAndCustomer = "araç kiralamalar listelendi";
 
+        public static string ImageCanNotAddMoreFive = "Araba için 5'den fazla Resim Eklenemez";
+        public static string ImageAdded = "Araba resmi eklendi";
+        public static string ImageCanNotFound = "Araba resmi bulunamadı";
+        public static string ImageDeleted = "Araba resmi silindi";
+        public static string ImageUpdated = "Araba resmi güncellendi";
+        
         public static string Maintenance = "Sistem bakımda";
         public static string GetAll = "listelendi";
-
+        
     }
 }
