@@ -7,6 +7,7 @@ namespace Entities.DTOs
     {
         public int RentalId { get; set; }
         public string CustomerName { get; set; }
+        public string CustomerLastName { get; set; }
         public string Description { get; set; }
         public decimal DailyPrice { get; set; }
         public string BrandName { get; set; }

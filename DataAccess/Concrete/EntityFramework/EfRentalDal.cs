@@ -26,6 +26,7 @@ namespace DataAccess.Concrete.EntityFramework
                     {
                         RentalId = r.RentalId,
                         CustomerName = u.FirstName,
+                        CustomerLastName=u.LastName,
                         Description = c.Description,
                         DailyPrice = (short)c.DailyPrice,
                         BrandName = b.BrandName,
