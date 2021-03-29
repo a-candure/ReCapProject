@@ -6,6 +6,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
+using Core.Utilities.FileUpload;
 
 namespace Business.Concrete
 {
@@ -33,7 +34,7 @@ namespace Business.Concrete
             }
 
             List<CarImage> images = new List<CarImage>();
-            images.Add(new CarImage() { CarId = 0, ImageId = 0, ImagePath = "/images/car-rent.png" });
+            images.Add(new CarImage() { CarId = 0, ImageId = 0, ImagePath = "images/Araba1.jpg" });
 
             return new SuccessDataResult<List<CarImage>>(images);
         }
@@ -53,7 +54,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.ImageCanNotAddMoreFive);
             }
 
-            var imageResult = Fileupload.FileUpload.Upload(image);
+            var imageResult = FileUpload.Upload(image);
 
             if (!imageResult.Success)
             {
@@ -72,7 +73,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.ImageCanNotFound);
             }
 
-            Fileupload.FileUpload.Delete(image.ImagePath);
+            FileUpload.Delete(image.ImagePath);
             _carImageDal.Delete(carImage);
             return new SuccessResult(Messages.ImageDeleted);
         }
@@ -85,7 +86,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.ImageCanNotFound);
             }
 
-            var updatedFile = Fileupload.FileUpload.Update(image, isImage.ImagePath);
+            var updatedFile = FileUpload.Update(image, isImage.ImagePath);
             if (!updatedFile.Success)
             {
                 return new ErrorResult(updatedFile.Message);
@@ -95,5 +96,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ImageUpdated);
 
         }
+
     }
 }

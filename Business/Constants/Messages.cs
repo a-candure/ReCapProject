@@ -1,11 +1,11 @@
 ﻿using System.Runtime.Serialization;
+using Core.Entities.Concrete;
 
 namespace Business.Constants
 {
     public class Messages
     {
         public static string CarAdded = "Araba eklendi";
-        public static string CarPriceInValid = "Araba fiyatı 0'dan büyük olmalıdır";
         public static string CarDeleted = "Araba silindi";
         public static string CarCanNotDelete = "araba silinemedi";
         public static string CarUpdated = "Araba güncellendi";
@@ -41,11 +41,9 @@ namespace Business.Constants
 
         public static string UserAdded = "Kullanıcı eklendi";
         public static string UserDeleted = "Kullanıcı silindi";
-        public static string UserCanNotDeleted = "Kullanıcı silinirken hata oluştu";
         public static string UserUpdated = "Kullanıcı güncellendi";
         public static string UsersListed = "Kullanıcılar listelendi";
-        public static string UserEmailFormatIsWrong = "Yanlış Email Formatı";
-        public static string GetUserByUserId = "Kullanıcı numaralarıyla birlikte kullanıcılar listelendi";
+        public static string GetUserByCustomerId = "Kullanıcı numaralarıyla birlikte kullanıcılar listelendi";
 
         public static string RentalAdded = "Araç kiralama eklendi";
         public static string RentalDeleted = "Araç kiralama silindi";
@@ -68,6 +66,14 @@ namespace Business.Constants
         
         public static string Maintenance = "Sistem bakımda";
         public static string GetAll = "listelendi";
-        
+
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string PasswordError = "Şifre hatalı";
+        public static string SuccessfulLogin = "Sisteme giriş başarılı";
+        public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
+        public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
+        public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
+
+        public static string AuthorizationDenied = "Yetkiniz yok";
     }
 }

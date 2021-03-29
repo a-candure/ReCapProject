@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Business.Abstract;
-using Entities.Concrete;
+using  System.Linq;
+using Core.Entities.Concrete;
 
 namespace WebAPI.Controllers
 {
@@ -12,41 +9,47 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUserService _userService;
+        IUserService _userService;
 
         public UsersController(IUserService userService)
         {
             _userService = userService;
         }
 
-        [HttpGet("getById")]
-        public ActionResult GetById(int id)
+        [HttpGet("getbyid")]
+        public IActionResult GetByUserId(int id)
         {
-            var result = _userService.GetById(id);
+            var result = _userService.GetByUserId(id);
             if (result.Success)
+            {
                 return Ok(result);
+            }
             return BadRequest(result);
         }
 
-        [HttpGet("getAll")]
-        public ActionResult GetAll()
+        [HttpGet("getall")]
+        public IActionResult GetAll()
         {
             var result = _userService.GetAll();
             if (result.Success)
+            {
                 return Ok(result);
+            }
             return BadRequest(result);
         }
 
-        [HttpPost]
-        public ActionResult Add(User user)
+        [HttpPost("delete")]
+        public IActionResult Add(User user)
         {
             var result = _userService.Add(user);
             if (result.Success)
+            {
                 return Ok(result);
+            }
             return BadRequest(result);
         }
 
-        [HttpDelete]
+        [HttpPost("delete")]
         public IActionResult Delete(User user)
         {
             var result = _userService.Delete(user);
@@ -57,7 +60,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPut]
+        [HttpPost("update")]
         public IActionResult Update(User user)
         {
             var result = _userService.Update(user);

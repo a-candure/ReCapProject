@@ -10,10 +10,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Business.Abstract;
-using Business.Concrete;
-using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
+using Core.Utilities.IoC;
+using Core.Utilities.Security.Encryption;
+using Core.Utilities.Security.JWT;
+using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace WebAPI
 {
@@ -30,14 +32,35 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddCors();
-
             ////Car
             //services.AddSingleton<ICarService, CarManager>();
             //services.AddSingleton<ICarDal, EfCarDal>();
 
             // AutofacBusinessModule De buralarý doldurduk.
+
+            services.AddCors();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidIssuer = tokenOptions.Issuer,
+                        ValidAudience = tokenOptions.Audience,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+                    };
+                });
+            ServiceTool.Create(services);
+
+            
         }
         
 
@@ -55,7 +78,11 @@ namespace WebAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
