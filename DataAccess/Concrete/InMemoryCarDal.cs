@@ -66,7 +66,8 @@ namespace DataAccess.Concrete
             _cars.Remove(car);
         }
 
-        public List<CarDetailDto> GetCarDetails()
+       
+        public List<CarDetailDto> GetCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
         {
             throw new NotImplementedException();
         }

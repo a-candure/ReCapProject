@@ -1,4 +1,6 @@
 ﻿using Core.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace Entities.DTOs
 {
@@ -8,6 +10,11 @@ namespace Entities.DTOs
         public string ColorName { get; set; }
         public string BrandName { get; set; }
         public short DailyPrice { get; set; }
+        public int ModelYear { get; set; }
+        public string Fuel { get; set; }
         public string Description { get; set; }
+        public List<string> Images { get; set; }
+        public DateTime Date { get; set; }
+        public bool Status { get; set; }
     }
 }
